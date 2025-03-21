@@ -1,0 +1,64 @@
+<%= render 'shared/navbar' %>
+
+  <!-- Landing Page Header -->
+  <header class="text-center py-20 bg-blue-200">
+    <h2 class="text-4xl font-bold text-gray-800">Welcome to the IMDb Movies Project</h2>
+    <p class="mt-4 text-xl text-gray-600">Explore the world of movies, actors, and directors!</p>
+  </header>
+
+  <!-- Project Description -->
+  <section class="container mx-auto p-6 bg-white mt-12 rounded shadow-lg">
+    <h2 class="text-2xl font-bold text-gray-800">Project Overview</h2>
+    <p class="mt-4 text-lg text-gray-700">
+      This project is a simple IMDb-like application that allows you to manage movies, actors, and directors.
+      The database includes tables for actors, directors, movies, and reviews, each of which is linked to create relationships
+      between them. Here's a brief overview of the key tables in the database:
+    </p>
+  </section>
+
+  <!-- Table Descriptions -->
+  <section class="container mx-auto p-6 bg-white mt-6 rounded shadow-lg">
+    <h2 class="text-2xl font-bold text-gray-800">Database Tables</h2>
+
+    <h3 class="mt-4 text-xl font-semibold text-gray-700">1. Actors Table</h3>
+    <p class="text-gray-700">
+      The <strong>actors</strong> table stores information about actors, including their name, birth year, nationality,
+      and their geographical coordinates (latitude and longitude).
+    </p>
+
+    <h3 class="mt-4 text-xl font-semibold text-gray-700">2. Directors Table</h3>
+    <p class="text-gray-700">
+      The <strong>directors</strong> table contains details about movie directors, such as their name, birth year, and nationality.
+    </p>
+
+    <h3 class="mt-4 text-xl font-semibold text-gray-700">3. Movies Table</h3>
+    <p class="text-gray-700">
+      The <strong>movies</strong> table stores information about each movie, including its title, genre, rating, budget,
+      revenue, and an overview of the movie. It also includes the movie's release date.
+    </p>
+
+    <h3 class="mt-4 text-xl font-semibold text-gray-700">4. Reviews Table</h3>
+    <p class="text-gray-700">
+      The <strong>reviews</strong> table stores user reviews for movies. Each review is linked to a specific movie and includes
+      the review text and the rating given.
+    </p>
+
+    <h3 class="mt-4 text-xl font-semibold text-gray-700">5. Movie Actors Table</h3>
+    <p class="text-gray-700">
+      The <strong>movie_actors</strong> table represents a many-to-many relationship between movies and actors. Each entry in this
+      table links a specific actor to a movie.
+    </p>
+
+    <h3 class="mt-4 text-xl font-semibold text-gray-700">6. Movie Directors Table</h3>
+    <p class="text-gray-700">
+      The <strong>movie_directors</strong> table represents a many-to-many relationship between movies and directors. It links
+      directors to the movies they have directed.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-500 text-white py-4 mt-12">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 IMDb Movies Project. All rights reserved.</p>
+    </div>
+  </footer>

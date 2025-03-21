@@ -1,0 +1,42 @@
+<%= render 'shared/navbar' %>
+
+<h1 class="text-5xl font-bold text-center text-gray-900 mb-8 mt-8">Actors</h1>
+
+<!-- Actor Table -->
+<div class="overflow-x-auto bg-white shadow-xl rounded-lg border border-gray-200 p-6 mx-4 lg:mx-12 mb-8">
+  <table class="table-auto w-full mt-8 border-collapse text-sm">
+    <thead class="bg-indigo-600 text-white">
+      <tr class="text-left">
+        <th class="px-6 py-4 font-semibold">Name</th>
+        <th class="px-6 py-4 font-semibold">Birth Year</th>
+        <th class="px-6 py-4 font-semibold">Nationality</th>
+        <th class="px-6 py-4 font-semibold">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white text-gray-800">
+      <% @actors.each do |actor| %>
+        <tr class="hover:bg-indigo-50 transition duration-200">
+          <td class="px-6 py-4 border-b text-gray-800"><%= actor.name %></td>
+          <td class="px-6 py-4 border-b text-gray-800"><%= actor.birth_year %></td>
+          <td class="px-6 py-4 border-b text-gray-800"><%= actor.nationality %></td>
+          <td class="px-6 py-4 border-b text-indigo-600">
+            <%= link_to 'View Details', show_actor_path(actor), class: "hover:underline" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagination Controls -->
+<div class="flex justify-center items-center mt-8 space-x-6 mb-8">
+  <% if @actors.prev_page %>
+    <%= link_to "← Previous", actors_path(page: @actors.prev_page, search: params[:search], actor_id: params[:actor_id]), class: "bg-gray-300 text-gray-800 py-2 px-6 rounded-lg hover:bg-gray-400 transition" %>
+  <% end %>
+
+  <span class="text-gray-700 font-semibold">Page <%= @actors.current_page %> of <%= @actors.total_pages %></span>
+
+  <% if @actors.next_page %>
+    <%= link_to "Next →", actors_path(page: @actors.next_page, search: params[:search], actor_id: params[:actor_id]), class: "bg-indigo-600 text-white py-2 px-6 rounded-lg hover:bg-indigo-700 transition" %>
+  <% end %>
+</div>

@@ -1,0 +1,57 @@
+<%= render 'shared/navbar' %>
+<div class="m-5 p-5">
+<h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8">Movies</h1>
+
+<!-- Movie Search and Actor Filter Form -->
+<div class="mb-6 flex justify-between items-center space-x-4">
+  <div class="flex space-x-4 w-full md:w-1/2">
+    <%= form_tag(movies_path, method: :get, class: "flex space-x-4 w-full") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search by Movie Name", class: "border p-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full" %>
+      <%= select_tag :actor_id, options_from_collection_for_select(@actors, :id, :name, params[:actor_id]), prompt: "Filter by Actor", class: "border p-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full" %>
+      <%= submit_tag "Filter", class: "bg-blue-500 text-white p-2 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" %>
+    <% end %>
+  </div>
+</div>
+
+<!-- Movie List Table -->
+<div class="overflow-x-auto bg-white shadow-xl rounded-lg">
+  <table class="table-auto w-full border-collapse mt-6 text-sm">
+    <thead class="bg-gradient-to-r from-teal-400 to-indigo-500 text-white">
+      <tr>
+        <th class="border p-4 text-left font-semibold">Title</th>
+        <th class="border p-4 text-left font-semibold">Genre</th>
+        <th class="border p-4 text-left font-semibold">Release Date</th>
+        <th class="border p-4 text-left font-semibold">Budget</th>
+        <th class="border p-4 text-left font-semibold">Revenue</th>
+
+      </tr>
+    </thead>
+    <tbody class="bg-white text-gray-800">
+      <% @movies.each do |movie| %>
+        <tr class="hover:bg-gray-50 transition duration-200">
+          <td class="border p-4">
+            <%= link_to movie.title, movie_path(movie), class: "text-indigo-600 hover:underline font-medium" %> <!-- Link to movie details -->
+          </td>
+          <td class="border p-4"><%= movie.genre %></td>
+          <td class="border p-4"><%= movie.release_date.strftime('%B %d, %Y') %></td>
+          <td class="border p-4"><%= movie.budget %></td>
+          <td class="border p-4"><%= movie.revenue %></td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<!-- Pagination Controls -->
+<div class="mt-8 flex justify-center space-x-4">
+  <% if @movies.prev_page %>
+    <%= link_to "← Previous", movies_path(page: @movies.prev_page, search: params[:search]), class: "bg-gray-300 text-gray-800 py-2 px-6 rounded-lg hover:bg-gray-400 transition" %>
+  <% end %>
+
+  <span class="text-gray-700 font-semibold"> Page <%= @movies.current_page %> of <%= @movies.total_pages %> </span>
+
+  <% if @movies.next_page %>
+    <%= link_to "Next →", movies_path(page: @movies.next_page, search: params[:search]), class: "bg-indigo-600 text-white py-2 px-6 rounded-lg hover:bg-indigo-700 transition" %>
+  <% end %>
+</div>
+
+</div>
